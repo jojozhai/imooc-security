@@ -1,0 +1,9 @@
+<div [hidden]="!authenticated" style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!!
+  </h1>
+  <button (click)="getOrder()" type="button" class="btn btn-primary">Get Order Info</button>
+  <p>order id :{{ order.id }}</p>
+  <p>order product id :{{ order.productId }}</p>
+  <button (click)="logout()" type="button" class="btn btn-primary">Logout</button>
+</div>

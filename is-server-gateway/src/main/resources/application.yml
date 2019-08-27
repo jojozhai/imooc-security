@@ -9,8 +9,8 @@ zuul:
     enabled: true
     repository: JPA
     default-policy-list:
-    - limit: 2 
-      quota: 1 
+    - limit: 20 
+      quota: 10 
       refresh-interval: 3
       type:
         - url 
