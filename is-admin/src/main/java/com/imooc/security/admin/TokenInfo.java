@@ -5,6 +5,8 @@ package com.imooc.security.admin;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 /**
@@ -26,7 +28,7 @@ public class TokenInfo {
 		this.expireTime = LocalDateTime.now().plusSeconds(expires_in - 3);
 		return this;
 	}
-	
+	@JsonIgnore
 	public boolean isExpired() {
 		return this.expireTime.isBefore(LocalDateTime.now());
 	}

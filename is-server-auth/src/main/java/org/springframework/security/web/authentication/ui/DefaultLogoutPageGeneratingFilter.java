@@ -74,7 +74,7 @@ public class DefaultLogoutPageGeneratingFilter extends OncePerRequestFilter {
 //				+ "        <h2 class=\"form-signin-heading\">Are you sure you want to log out???</h2>\n"
 				+ renderHiddenInputs(request)
 				+ "        <input type=\"hidden\" name=\"redirect_uri\" value=\""+ServletRequestUtils.getRequiredStringParameter(request, "redirect_uri")+"\">\n"
-				//+ "        <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Log Out</button>\n"
+//				+ "        <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Log Out</button>\n"
 				+ "      </form>\n"
 				+ "    </div>\n"
 				+ "    <script>document.getElementById('logoutForm').submit()</script>"

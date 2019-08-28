@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { LogoutInterceptor } from './app.interceptor';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +22,7 @@ import { LogoutInterceptor } from './app.interceptor';
     HttpClientModule
   ],
   providers: [
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: LogoutInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

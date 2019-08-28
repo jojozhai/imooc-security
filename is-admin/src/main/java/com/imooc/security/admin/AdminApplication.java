@@ -5,6 +5,7 @@ package com.imooc.security.admin;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,7 +62,19 @@ public class AdminApplication {
 		
 		ResponseEntity<TokenInfo> token = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
 		log.info("token info: " + token.getBody().toString());
-		request.getSession().setAttribute("token", token.getBody().init());
+//		request.getSession().setAttribute("token", token.getBody().init());
+		
+		Cookie accessTokenCookie = new Cookie("imooc_access_token", token.getBody().getAccess_token());
+		accessTokenCookie.setMaxAge(token.getBody().getExpires_in().intValue());
+		accessTokenCookie.setDomain("imooc.com");
+		accessTokenCookie.setPath("/");
+		response.addCookie(accessTokenCookie);
+		
+		Cookie refreshTokenCookie = new Cookie("imooc_refresh_token", token.getBody().getRefresh_token());
+		refreshTokenCookie.setMaxAge(2592000);
+		refreshTokenCookie.setDomain("imooc.com");
+		refreshTokenCookie.setPath("/");
+		response.addCookie(refreshTokenCookie);
 		
 		response.sendRedirect("/");
 	}

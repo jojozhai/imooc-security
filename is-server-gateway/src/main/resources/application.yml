@@ -1,5 +1,7 @@
 zuul:
   routes:
+    user:
+      url: http://localhost:9090
     token:
       url: http://localhost:9090
     order:
