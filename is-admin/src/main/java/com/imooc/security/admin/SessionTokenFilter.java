@@ -38,6 +38,9 @@ public class SessionTokenFilter extends ZuulFilter {
 		TokenInfo token = (TokenInfo)request.getSession().getAttribute("token");
 		
 		if(token != null) {
+			if(token.isExpired()) {
+
+			}
 			requestContext.addZuulRequestHeader("Authorization", "bearer "+token.getAccess_token());
 		}
 		
