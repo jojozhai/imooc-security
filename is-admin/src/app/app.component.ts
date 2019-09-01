@@ -13,12 +13,18 @@ export class AppComponent {
   order = {};
 
   constructor(private http: HttpClient) {
-    if (!this.authenticated) {
-      window.location.href = 'http://auth.imooc.com:9090/oauth/authorize?' +
-        'client_id=admin&' +
-        'redirect_uri=http://admin.imooc.com:8080/oauth/callback&' +
-        'response_type=code';
-    }
+    this.http.get('me').subscribe(data => {
+      if (data) {
+        this.authenticated = true;
+      }
+      if (!this.authenticated) {
+        window.location.href = 'http://auth.imooc.com:9090/oauth/authorize?' +
+          'client_id=admin&' +
+          'redirect_uri=http://admin.imooc.com:8080/oauth/callback&' +
+          'response_type=code&' +
+          'state=abc';
+      }
+    });
   }
 
   getOrder() {
