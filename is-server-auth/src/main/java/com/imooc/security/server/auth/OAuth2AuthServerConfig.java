@@ -52,5 +52,6 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.checkTokenAccess("isAuthenticated()");
 	}
+	
 
 }
