@@ -37,7 +37,7 @@ export class AppComponent {
 
   logout() {
     this.http.post('logout', this.credentials).subscribe(() => {
-      this.authenticated = false;
+      window.location.href = 'http://auth.imooc.com:9090/logout?redirect_uri=http://admin.imooc.com:8080';
     }, () => {
       alert('logout fail');
     });
