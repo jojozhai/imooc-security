@@ -36,7 +36,9 @@ public class CookieTokenFilter extends ZuulFilter {
 	 */
 	@Override
 	public boolean shouldFilter() {
-		return true;
+		RequestContext requestContext = RequestContext.getCurrentContext();
+		HttpServletRequest request = requestContext.getRequest();
+		return !StringUtils.equals(request.getRequestURI(), "/logout");
 	}
 
 	/* (non-Javadoc)
@@ -73,13 +75,13 @@ public class CookieTokenFilter extends ZuulFilter {
 					
 					requestContext.addZuulRequestHeader("Authorization", "bearer "+newToken.getBody().getAccess_token());
 					
-					Cookie accessTokenCookie = new Cookie("imooc_access_toekn", newToken.getBody().getAccess_token());
+					Cookie accessTokenCookie = new Cookie("imooc_access_token", newToken.getBody().getAccess_token());
 					accessTokenCookie.setMaxAge(newToken.getBody().getExpires_in().intValue());
 					accessTokenCookie.setDomain("imooc.com");
 					accessTokenCookie.setPath("/");
 					response.addCookie(accessTokenCookie);
 					
-					Cookie refreshTokenCookie = new Cookie("imooc_refresh_toekn", newToken.getBody().getRefresh_token());
+					Cookie refreshTokenCookie = new Cookie("imooc_refresh_token", newToken.getBody().getRefresh_token());
 					refreshTokenCookie.setMaxAge(2592000);
 					refreshTokenCookie.setDomain("imooc.com");
 					refreshTokenCookie.setPath("/");

@@ -71,13 +71,13 @@ public class AdminApplication {
 		ResponseEntity<TokenInfo> token = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
 //		request.getSession().setAttribute("token", token.getBody().init());
 		
-		Cookie accessTokenCookie = new Cookie("imooc_access_toekn", token.getBody().getAccess_token());
+		Cookie accessTokenCookie = new Cookie("imooc_access_token", token.getBody().getAccess_token());
 		accessTokenCookie.setMaxAge(token.getBody().getExpires_in().intValue());
 		accessTokenCookie.setDomain("imooc.com");
 		accessTokenCookie.setPath("/");
 		response.addCookie(accessTokenCookie);
 		
-		Cookie refreshTokenCookie = new Cookie("imooc_refresh_toekn", token.getBody().getRefresh_token());
+		Cookie refreshTokenCookie = new Cookie("imooc_refresh_token", token.getBody().getRefresh_token());
 		refreshTokenCookie.setMaxAge(2592000);
 		refreshTokenCookie.setDomain("imooc.com");
 		refreshTokenCookie.setPath("/");
