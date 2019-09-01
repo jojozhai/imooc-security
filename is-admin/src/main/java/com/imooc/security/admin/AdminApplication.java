@@ -68,7 +68,7 @@ public class AdminApplication {
 		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
 		
 		ResponseEntity<TokenInfo> token = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
-		request.getSession().setAttribute("token", token.getBody());
+		request.getSession().setAttribute("token", token.getBody().init());
 		
 		response.sendRedirect("/");
 	}
