@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
-export class LogoutInterceptor implements HttpInterceptor {
+export class RefreshInterceptor implements HttpInterceptor {
 
   constructor(private http: HttpClient) {
   }
@@ -20,14 +20,19 @@ export class LogoutInterceptor implements HttpInterceptor {
         error => {
           console.log(error);
           if (error.status === 500 && error.error.message === 'refresh fail') {
-            this.logout();
+            // this.logout();
+            window.location.href = 'http://auth.imooc.com:9090/oauth/authorize?' +
+              'client_id=admin&' +
+              'redirect_uri=http://admin.imooc.com:8080/oauth/callback&' +
+              'response_type=code&' +
+              'state=abc';
           }
         }));
   }
 
-  logout() {
-    this.http.post('logout', {}).subscribe(() => {
-      window.location.href = 'http://auth.imooc.com:9090/logout?redirect_uri=http://admin.imooc.com:8080';
-    });
-  }
+  // logout() {
+  //   this.http.post('logout', {}).subscribe(() => {
+  //     window.location.href = 'http://auth.imooc.com:9090/logout?redirect_uri=http://admin.imooc.com:8080';
+  //   });
+  // }
 }
