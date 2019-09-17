@@ -46,7 +46,8 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 		return new JwtTokenStore(jwtTokenEnhancer());
 	}
 	
-	private JwtAccessTokenConverter jwtTokenEnhancer() {
+	@Bean
+	public JwtAccessTokenConverter jwtTokenEnhancer() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 //		converter.setSigningKey("123456");
 		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jojo.key"), "123456".toCharArray());

@@ -1,2 +1,11 @@
 server:
   port: 9080
+  
+security:
+  oauth2:
+    client:
+      client-id: orderService
+      client-secret: 123456
+    resource:
+      jwt:
+        key-uri: http://auth.imooc.com:9090/oauth/token_key
