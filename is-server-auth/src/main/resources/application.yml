@@ -6,11 +6,10 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+  session:
+    timeout: 2592000
+      
 
       
 server:
   port: 9090
-  servlet:
-    session:
-      timeout: 2592000
-        

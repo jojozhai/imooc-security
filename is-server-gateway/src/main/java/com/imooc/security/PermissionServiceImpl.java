@@ -22,6 +22,7 @@ public class PermissionServiceImpl implements PermissionService {
 	 */
 	@Override
 	public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
+		System.out.println("2 authorize");
 		System.out.println(request.getRequestURI());
 		System.out.println(ReflectionToStringBuilder.toString(authentication));
 		return RandomUtils.nextInt() % 2 == 0;
