@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -29,6 +31,7 @@ public class OrderController {
 	
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@SentinelResource("createOrder")
 	public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username) {
 		log.info("user is " + username);
 //		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);

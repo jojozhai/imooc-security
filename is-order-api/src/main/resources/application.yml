@@ -9,3 +9,12 @@ security:
     resource:
       jwt:
         key-uri: http://auth.imooc.com:9090/oauth/token_key
+        
+spring:
+  application:
+    name: orderApi
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
