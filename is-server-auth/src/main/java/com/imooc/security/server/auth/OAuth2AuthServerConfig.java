@@ -26,7 +26,7 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
  * @author jojo
  *
  */
-@EnableJdbcHttpSession
+@EnableJdbcHttpSession(maxInactiveIntervalInSeconds = 3600)
 @Configuration
 @EnableAuthorizationServer
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter {

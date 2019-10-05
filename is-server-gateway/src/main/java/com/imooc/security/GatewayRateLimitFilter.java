@@ -41,7 +41,6 @@ public class GatewayRateLimitFilter extends OncePerRequestFilter {
 			response.getWriter().flush();
 			return;
 		}
-		
 	}
 
 }

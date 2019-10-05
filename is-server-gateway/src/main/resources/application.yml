@@ -7,27 +7,10 @@ zuul:
     order:
       url: http://localhost:9080
   sensitive-headers:
-  ratelimit:
-    enabled: true
-    repository: JPA
-    default-policy-list:
-    - limit: 20 
-      quota: 10 
-      refresh-interval: 3
-      type:
-        - url 
-        - httpmethod
+
 spring:
   application:
     name: gateway
-  datasource:
-    url: jdbc:mysql://localhost:3306/imooc-security?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    generate-ddl: true
-    show-sql: true
     
 server:
   port: 9070  

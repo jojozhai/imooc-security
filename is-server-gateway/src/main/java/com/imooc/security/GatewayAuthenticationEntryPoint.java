@@ -32,7 +32,7 @@ public class GatewayAuthenticationEntryPoint extends OAuth2AuthenticationEntryPo
 		}
 		
 		request.setAttribute("logUpdated", "yes");
-		
+
 		super.commence(request, response, authException);
 	}
 	
