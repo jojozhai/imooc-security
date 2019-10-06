@@ -3,39 +3,47 @@
  */
 package com.imooc.security.price;
 
-import java.math.BigDecimal;
+import java.lang.reflect.Method;
 import java.util.Collections;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.csp.sentinel.Entry;
+import com.alibaba.csp.sentinel.EntryType;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.annotation.aspectj.AbstractSentinelAspectSupport;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.authority.AuthorityRule;
 import com.alibaba.csp.sentinel.slots.block.authority.AuthorityRuleManager;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author jojo
  *
  */
-@RestController
-@RequestMapping("/prices")
-@Slf4j
-public class PriceController {
-	
-	@GetMapping("/{id}")
-//	@SentinelResource("getPrice")
-	public PriceInfo getPrice(@PathVariable Long id, @AuthenticationPrincipal String username) {
-		String resource = "getPrice";
+@Aspect
+@Component
+public class SentinelAspect extends AbstractSentinelAspectSupport {
+
+    @Pointcut("@annotation(com.alibaba.csp.sentinel.annotation.SentinelResource)")
+    public void sentinelResourceAnnotationPointcut() {
+    }
+
+    public static void main(String[] args) throws Throwable {
+		new SentinelAspect().invokeResourceWithSentinel(null);
+	}
+    @Around("sentinelResourceAnnotationPointcut()")
+    public Object invokeResourceWithSentinel(ProceedingJoinPoint pjp) throws Throwable {
+    	
+    	String resource = "getPrice";
     	String origin = "appA";
     	
     	AuthorityRule rule = new AuthorityRule();
@@ -57,13 +65,7 @@ public class PriceController {
             }
             ContextUtil.exit();
         }
-		
-		log.info("productId is "+id);
-		log.info("user is "+ username);
-		PriceInfo info = new PriceInfo();
-		info.setId(id);
-		info.setPrice(new BigDecimal(100));
-		return info;
-	}
-
+        
+        return null;
+    }
 }
