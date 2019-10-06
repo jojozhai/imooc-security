@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +32,17 @@ public class OrderController {
 	
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@SentinelResource("createOrder")
-	public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username) {
+	@SentinelResource(value = "createOrder", blockHandler="doOnBlock")
+	public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username) throws InterruptedException {
 		log.info("user is " + username);
 //		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);
 //		log.info("price is "+price.getPrice());
+		Thread.sleep(50);
+		return info;
+	}
+	
+	public OrderInfo doOnBlock(@RequestBody OrderInfo info, @AuthenticationPrincipal String username, BlockException exception) throws InterruptedException {
+		log.info("blocked by " + exception.getClass().getSimpleName());
 		return info;
 	}
 	
