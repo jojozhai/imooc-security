@@ -17,4 +17,9 @@ spring:
     sentinel:
       transport:
         port: 8719
-        dashboard: localhost:8080
+        dashboard: localhost:8082
+        
+sentinel:
+  zookeeper:
+    address: 127.0.0.1:2181
+    path: /sentinel_rule_config
