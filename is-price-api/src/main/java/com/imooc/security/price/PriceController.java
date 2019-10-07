@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PriceController {
 	
 	@GetMapping("/{id}")
+	@SentinelResource("getPrice")
 	public PriceInfo getPrice(@PathVariable Long id, @AuthenticationPrincipal String username) {
 		log.info("productId is "+id);
 		log.info("user is "+ username);

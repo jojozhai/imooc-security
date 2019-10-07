@@ -9,3 +9,17 @@ security:
     resource:
       jwt:
         key-uri: http://auth.imooc.com:9090/oauth/token_key
+        
+spring:
+  application:
+    name: priceApi
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8082
+        
+sentinel:
+  zookeeper:
+    address: 127.0.0.1:2181
+    path: /sentinel_rule_config

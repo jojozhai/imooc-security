@@ -36,7 +36,8 @@ public class OrderController {
 		log.info("user is " + username);
 //		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);
 //		log.info("price is "+price.getPrice());
-		return info;
+		throw new RuntimeException("test");
+//		return info;
 	}
 	
 	@GetMapping("/{id}")
