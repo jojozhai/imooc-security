@@ -36,12 +36,12 @@ public class OrderController {
 		log.info("user is " + username);
 //		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);
 //		log.info("price is "+price.getPrice());
-		throw new RuntimeException("haha, test");
-//		return info;
+//		throw new RuntimeException("haha, test");
+		return info;
 	}
 	
 	@GetMapping("/{id}")
-	public OrderInfo getInfo(@PathVariable Long id, @RequestHeader String username) {
+	public OrderInfo getInfo(@PathVariable Long id, @AuthenticationPrincipal String username) {
 		log.info("user is " + username);
 		log.info("orderId is " + id);
 		OrderInfo info = new OrderInfo();
