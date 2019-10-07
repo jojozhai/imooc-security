@@ -37,6 +37,7 @@ public class OrderController {
 //		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);
 //		log.info("price is "+price.getPrice());
 //		throw new RuntimeException("haha, test");
+		Thread.sleep(RandomUtils.nextInt(200, 1000));
 		return info;
 	}
 	
