@@ -1,5 +1,5 @@
 server:
-  port: 9080
+  port: 9082
   
 security:
   oauth2:
@@ -23,3 +23,14 @@ sentinel:
   zookeeper:
     address: 127.0.0.1:2181
     path: /sentinel_rule_config
+    
+management:
+  endpoints:
+    promethus:
+      enable: true
+    web:
+      exposure:
+        include:
+        - prometheus
+        - info
+        - health

@@ -45,9 +45,17 @@
 			<version>0.9.0.RELEASE</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.alibaba.csp</groupId>
-		    <artifactId>sentinel-datasource-zookeeper</artifactId>
-		    <version>1.5.2</version>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-zookeeper</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 	</dependencies>
 
