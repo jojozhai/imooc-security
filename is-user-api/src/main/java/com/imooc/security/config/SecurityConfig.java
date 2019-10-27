@@ -27,17 +27,17 @@ import com.imooc.security.user.UserInfo;
 @EnableJpaAuditing
 public class SecurityConfig implements WebMvcConfigurer {
 	
-	@Autowired
-	private AuditLogInterceptor auditLogInterceptor;
-	
-	@Autowired
-	private AclInterceptor aclInterceptor;
-	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(auditLogInterceptor);
-		registry.addInterceptor(aclInterceptor);
-	}
+//	@Autowired
+//	private AuditLogInterceptor auditLogInterceptor;
+//	
+//	@Autowired
+//	private AclInterceptor aclInterceptor;
+//	
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(auditLogInterceptor);
+//		registry.addInterceptor(aclInterceptor);
+//	}
 	
 	@Bean
 	public AuditorAware<String> auditorAware() {

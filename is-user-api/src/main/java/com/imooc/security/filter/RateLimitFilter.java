@@ -21,8 +21,8 @@ import com.google.common.util.concurrent.RateLimiter;
  * @author jojo
  *
  */
-@Component
-@Order(1)
+//@Component
+//@Order(1)
 public class RateLimitFilter extends OncePerRequestFilter {
 	
 	private RateLimiter rateLimiter = RateLimiter.create(1);

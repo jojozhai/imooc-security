@@ -17,7 +17,7 @@ import com.imooc.security.log.AuditLogRepository;
  * @author jojo
  *
  */
-@Component
+//@Component
 public class AuditLogInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired

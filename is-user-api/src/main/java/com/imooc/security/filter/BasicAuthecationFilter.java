@@ -26,8 +26,8 @@ import com.lambdaworks.crypto.SCryptUtil;
  * @author jojo
  *
  */
-@Component
-@Order(2)
+//@Component
+//@Order(2)
 public class BasicAuthecationFilter extends OncePerRequestFilter {
 	
 	@Autowired

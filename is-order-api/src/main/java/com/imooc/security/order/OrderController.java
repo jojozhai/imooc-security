@@ -4,8 +4,10 @@
 package com.imooc.security.order;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,19 +28,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OrderController {
 	
-//	@Autowired
-//	private OAuth2RestTemplate restTemplate;
+	@Autowired
+	private OAuth2RestTemplate restTemplate;
 	
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@SentinelResource("createOrder")
 	public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username) throws InterruptedException {
 		log.info("user is " + username);
-//		PriceInfo price = restTemplate.getForObject("http://localhost:9060/prices/"+info.getProductId(), PriceInfo.class);
-//		log.info("price is "+price.getPrice());
+		restTemplate.getForObject("http://localhost:8080/users/13", String.class);
 		Thread.sleep(RandomUtils.nextInt(100, 1000));
-		throw new RuntimeException("haha, test");
-//		return info;
+//		throw new RuntimeException("haha, test");
+		return info;
 	}
 	
 	@GetMapping("/{id}")

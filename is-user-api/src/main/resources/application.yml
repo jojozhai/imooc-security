@@ -9,8 +9,8 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
-server:
-  ssl:
-    key-store: classpath:jojo.key
-    key-store-password: 123456
-    key-password: 123456
+#server:
+#  ssl:
+#    key-store: classpath:jojo.key
+#    key-store-password: 123456
+#    key-password: 123456

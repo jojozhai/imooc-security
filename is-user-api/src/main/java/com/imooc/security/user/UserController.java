@@ -63,11 +63,11 @@ public class UserController {
 	
 	@GetMapping("/{id}")
 	public UserInfo get(@PathVariable Long id, HttpServletRequest request) throws IOException {
-		UserInfo user = (UserInfo) request.getSession().getAttribute("user");
-		
-		if(user == null || !user.getId().equals(id)) {
-			throw new RuntimeException("身份认证信息异常，获取用户信息失败");
-		}
+//		UserInfo user = (UserInfo) request.getSession().getAttribute("user");
+//		
+//		if(user == null || !user.getId().equals(id)) {
+//			throw new RuntimeException("身份认证信息异常，获取用户信息失败");
+//		}
 		
 		return userService.get(id);
 	}

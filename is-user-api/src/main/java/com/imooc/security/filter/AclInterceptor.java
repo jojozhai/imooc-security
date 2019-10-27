@@ -17,7 +17,7 @@ import com.imooc.security.user.UserInfo;
  * @author jojo
  *
  */
-@Component
+//@Component
 public class AclInterceptor extends HandlerInterceptorAdapter {
 	
 	private String[] permitUrls = new String[] {"/users/login"};
