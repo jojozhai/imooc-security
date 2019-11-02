@@ -9,6 +9,11 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{PtxId}] [%thread] %-5level %logger{50} - %msg%n"
+    
 #server:
 #  ssl:
 #    key-store: classpath:jojo.key

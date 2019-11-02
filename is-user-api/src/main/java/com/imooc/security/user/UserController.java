@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author jojo
  *
  */
 @RestController
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
 	
 	@Autowired
@@ -68,7 +71,7 @@ public class UserController {
 //		if(user == null || !user.getId().equals(id)) {
 //			throw new RuntimeException("身份认证信息异常，获取用户信息失败");
 //		}
-		
+		log.info("get user");
 		return userService.get(id);
 	}
 	
